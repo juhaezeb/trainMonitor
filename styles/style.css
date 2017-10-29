@@ -1,0 +1,102 @@
+body {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/*****************
+     Elements
+*****************/
+div#header button{
+    height: 100%;
+    border: 0;
+    padding: 2px 3px;
+    margin: 0;
+    vertical-align: center;
+    background-color: #00b6b6;
+}
+
+div#overlay-window form{
+    padding: 0ex;
+}
+
+/*
+form#overlay-form input[type="text"]{
+    width: 100%;
+}*/
+
+/*****************
+       DIVs
+*****************/
+
+div {
+    border-spacing: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+div#overlay-window{
+    display: none;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    height: 50%;
+    width: 50%;
+    z-index: 150;
+    background-color: white;
+
+    padding: 2ex;
+}
+
+div#overlay{
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0,0,0,0.5);
+}
+
+div#header{
+    height: 3ex;
+    width: 100%;
+    background-color: #76e3e3;
+}
+
+div.trainSelect{
+    width: 15em !important;
+    padding: 1px;
+}
+
+div[id^="suggesstion-box-"]{
+    /*z-index: 200;*/
+    border: 1px solid grey;
+    border-radius: 3px;
+    width: 100%;
+}
+
+form#overlay-form > div{
+    display: inline-block;
+    vertical-align: top;
+}
+
+/*****************
+       Tables
+*****************/
+
+table{
+    border-spacing: 0;
+    border: 1px solid black;
+    padding: 0;
+    margin: 0;
+}
+
+tr, td{
+    border-spacing: 0;
+    border: 1px solid black;
+    padding: 0;
+    margin: 0;
+}

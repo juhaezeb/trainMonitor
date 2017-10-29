@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trainchecker</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/jquery-3.2.1.js"></script>    
+  </head>
+  <body>
+    <div id='overlay' onclick="setOverlay(false);">
+    </div>
+    <div id='overlay-window'>
+        <form id='overlay-form'>
+            <div>
+                From:<br>
+                <div class='trainSelect'>
+                    <input type="text" name="from" value='' class='search-station' id='fromStation'>
+                    <div id="suggesstion-box-from" style='display:none;'>&nbsp;</div>
+                </div>
+            </div>
+
+            <div>
+                To:<br>
+                <div class='trainSelect'>
+                    <input type="text" name="to" value='' class='search-station' id='toStation'>      
+                    <div id="suggesstion-box-to" style='display:none;'></div>
+                </div>
+            </div>
+
+            <div>
+                Time:<br>
+                <div class='trainSelect'>
+                    <input type="text" name="time" placeholder='eg. 16:00'>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id='header'>
+        <button onclick="getTrains()">Select trains</button>
+    </div>
+    <div id='main'>
+
+    </div>
+    
+
+    <script src="scripts/train.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".search-station").keyup(function(){
+                name = $(this).attr('name');
+                $.ajax({
+                type: "POST",
+                url: "getStation.php",
+                data:'keyword='+$(this).val(),
+                success: function(data){
+                    $("#suggesstion-box-"+name).show();
+                    $("#suggesstion-box-"+name).html(data);
+                }
+                });
+            });
+        });
+        //To select station
+        function selectStation(val) {
+            document.getElementById($(this).attr('name')+"Station").value = val;
+            $("#suggesstion-box-"+$(this).attr('name')).hide();
+        }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+            }
+            alert(out);
+        }
+    </script>
+  </body>
+</html>
