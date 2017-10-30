@@ -11,15 +11,14 @@
     </div>
     <div id='overlay-window'>
         <form id='overlay-form'>
-            <div>
+            <div class="trainSelectContainer"  style="width: 25%">
                 From:<br>
                 <div class='trainSelect'>
                     <input type="text" name="from" value='' class='search-station' id='fromStation'>
                     <div id="suggesstion-box-from" style='display:none;'>&nbsp;</div>
                 </div>
             </div>
-
-            <div>
+            <div class="trainSelectContainer" style="width: 25%">
                 To:<br>
                 <div class='trainSelect'>
                     <input type="text" name="to" value='' class='search-station' id='toStation'>      
@@ -27,27 +26,33 @@
                 </div>
             </div>
 
-            <div>
+            <div class="trainSelectContainer" style="width: 25%">
                 Time:<br>
                 <div class='trainSelect'>
                     <input type="text" name="time" placeholder='eg. 16:00'>
                 </div>
             </div>
+            <div class="trainSelectContainer" style="width: 15%">
+                <br><button id='searchTrains'>Search</button>
+            </div>
         </form>
-
+        <div id='trainSelectResult'>
+            &nbsp;
+        </div>
     </div>
 
     <div id='header'>
         <button onclick="getTrains()">Select trains</button>
     </div>
     <div id='main'>
-
+        <h1> test</h1>
     </div>
     
 
     <script src="scripts/train.js"></script>
 
     <script type="text/javascript">
+        // get stations for input
         $(document).ready(function(){
             $(".search-station").keyup(function(){
                 name = $(this).attr('name');
@@ -62,12 +67,27 @@
                 });
             });
         });
-        //To select station
+        $(document).ready(function(){
+            // hide suggestion boxes when clicked elsewhere
+            $(document).click(function(){
+                $("#suggesstion-box-from").hide();
+                $("#suggesstion-box-to").hide();
+            });
+            $("#suggesstion-box-from").click(function(e){
+                e.stopPropagation();
+            });
+            $("#suggesstion-box-to").click(function(e){
+                e.stopPropagation();
+            });
+        });
+        
         function selectStation(val) {
+            // fill in station when selected
             document.getElementById($(this).attr('name')+"Station").value = val;
             $("#suggesstion-box-"+$(this).attr('name')).hide();
         }
         function dump(obj) {
+            // alert a var
             var out = '';
             for (var i in obj) {
                 out += i + ": " + obj[i] + "\n";
