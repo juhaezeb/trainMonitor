@@ -10,10 +10,10 @@ if(isset($_POST["keyword"])) {
 
     $result = array();
     foreach($stations as $station){
-        if(preg_match("/".$_POST["keyword"]."/",strtolower($station["standardname"]))){
+        if(preg_match("/^".$_POST["keyword"]."/",strtolower($station["standardname"]))){
             $result[$station["id"]] = $station["standardname"];
         }
-        if(count($result) > 4){
+        if(count($result) > 7){
             break;
         }
     }
