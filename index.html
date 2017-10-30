@@ -10,32 +10,32 @@
     <div id='overlay' onclick="setOverlay(false);">
     </div>
     <div id='overlay-window'>
-        <form id='overlay-form'>
+        <div id='overlay-form'>
             <div class="trainSelectContainer"  style="width: 25%">
                 From:<br>
-                <div class='trainSelect'>
-                    <input type="text" name="from" value='' class='search-station' id='fromStation'>
+                <div class='trainSelectInput'>
+                    <input type="text" name="from" value='' class='search-station' id='fromStation' autocomplete="off">
                     <div id="suggesstion-box-from" style='display:none;'>&nbsp;</div>
                 </div>
             </div>
             <div class="trainSelectContainer" style="width: 25%">
                 To:<br>
-                <div class='trainSelect'>
-                    <input type="text" name="to" value='' class='search-station' id='toStation'>      
+                <div class='trainSelectInput'>
+                    <input type="text" name="to" value='' class='search-station' id='toStation' autocomplete="off">
                     <div id="suggesstion-box-to" style='display:none;'></div>
                 </div>
             </div>
 
             <div class="trainSelectContainer" style="width: 25%">
                 Time:<br>
-                <div class='trainSelect'>
-                    <input type="text" name="time" placeholder='eg. 16:00'>
+                <div class='trainSelectInput'>
+                    <input type="text" name="time" placeholder='eg. 16:00' id="timeSelect" autocomplete="off">
                 </div>
             </div>
             <div class="trainSelectContainer" style="width: 15%">
-                <br><button id='searchTrains'>Search</button>
+                <br><button id='searchTrains' onclick="querySelectedTrains()">Search</button>
             </div>
-        </form>
+        </div>
         <div id='trainSelectResult'>
             &nbsp;
         </div>
