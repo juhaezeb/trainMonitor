@@ -20,10 +20,12 @@ div#overlay-window form{
     padding: 0ex;
 }
 
-/*
+
 form#overlay-form input[type="text"]{
-    width: 100%;
-}*/
+    /*width: 15em;
+    max-width: 90%;*/
+    width: 90%;
+}
 
 /*****************
        DIVs
@@ -65,22 +67,47 @@ div#header{
     width: 100%;
     background-color: #76e3e3;
 }
-
+/*
 div.trainSelect{
-    width: 15em !important;
+    /*width: 60% !important;
     padding: 1px;
-}
+}*/
 
 div[id^="suggesstion-box-"]{
-    /*z-index: 200;*/
+    z-index: 200;
+    position: absolute;
     border: 1px solid grey;
     border-radius: 3px;
-    width: 100%;
+    box-sizing: border-box;
+    width: 15em;
+    max-width: 90%;
+    border-spacing: 0;
+    padding: 0;
+    margin: 0 auto 0 0;
+    background-color: lightgray;
 }
 
-form#overlay-form > div{
+div.trainSelectContainer{
     display: inline-block;
     vertical-align: top;
+    /*width: 30%;*/
+    max-width: 20em;
+}
+
+div.trainSelectContainer button{
+    overflow: hidden;
+    width: 90%;
+}
+/*
+div.trainSelectContainer{
+    display: inline-block;
+    vertical-align: top;
+    width: 5%;
+}
+*/
+
+div#trainSelectResult{
+    border: 1px solid black;
 }
 
 /*****************
@@ -99,4 +126,20 @@ tr, td{
     border: 1px solid black;
     padding: 0;
     margin: 0;
+}
+
+/*****************
+       Lists
+*****************/
+
+ul#station-list{
+    list-style-type: none;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+ul#station-list li:hover{
+    background-color: gray;
+    cursor: pointer;
 }
