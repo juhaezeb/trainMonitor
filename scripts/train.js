@@ -18,6 +18,11 @@ function querySelectedTrains(){
     rawtime = $("#timeSelect").val();
     time =  rawtime.substring(0,2) + rawtime.substring(3,5);
 
+    /*DEBUG*/
+    from="Antwerpen-Berchem";
+    to="Gent-Sint-Pieters";
+    time="1600";
+
     $.ajax({
     type: "GET",
     url: "https://api.irail.be/connections/",
@@ -35,21 +40,47 @@ function querySelectedTrains(){
     });
 }
 
+function secondsToHm(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hDisplay = h > 0 ? ("0"+h).slice(-2) : "00";
+    var mDisplay = m > 0 ? ("0"+m).slice(-2) : "00";
+    /*var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";*/
+    return hDisplay +":"+ mDisplay; 
+}
+
 function printSelectedTrains(query){
     //alert(typeof(query));
     connections = query["connection"];
-    $("#trainSelectResult").html="";
-    $("#trainSelectResult").append(
-        $(document.createElement("table"))
-        .addClass("selectedTrainResult")
-    );
+    $("table.selectedTrainResult tbody").empty();
+    $("#trainSelectResult").show();
     for(i = 0;i<connections.length;i++){
+        departDate = new Date(connections[i].departure.time*1000);
+        arriveDate = new Date(connections[i].arrival.time*1000);
         $(".selectedTrainResult").append(
             $(document.createElement("tr")).append(
-                $(document.createElement("td")).html(
-                    connections[i].departure.stationinfo.id
-                )
-            )
+                [
+                    $(document.createElement("td")).html(
+                        connections[i].departure.stationinfo.standardname
+                        + "<br>" +
+                        departDate.getHours()+":"+departDate.getMinutes()
+                    ),
+                    $(document.createElement("td")).html(
+                        connections[i].arrival.stationinfo.standardname
+                        + "<br>" +
+                        arriveDate.getHours()+":"+('0'+arriveDate.getMinutes()).slice(-2)
+                    ),
+                    $(document.createElement("td")).html(
+                        secondsToHm(connections[i].duration)
+                    ).css('text-align','center'),
+                    $(document.createElement("td")).html(
+                        connections[i].departure.vehicle.split(".").slice(-1)
+                    )
+                ]
+            ).addClass("trainEntry")
         );
     }
 }

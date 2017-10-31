@@ -36,8 +36,20 @@
                 <br><button id='searchTrains' onclick="querySelectedTrains()">Search</button>
             </div>
         </div>
-        <div id='trainSelectResult'>
-            &nbsp;
+        <br>
+        <div id='trainSelectResult' style="display:none;">
+            <table class="selectedTrainResult">
+                <thead>
+                    <tr>
+                        <th>From:</th>
+                        <th>To:</th>
+                        <th>Duration:</th>
+                        <th>Train:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 
