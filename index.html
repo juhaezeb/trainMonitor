@@ -10,6 +10,9 @@
     <div id='overlay' onclick="setOverlay(false);">
     </div>
     <div id='overlay-window'>
+        <div id='overlay-side'>
+
+        </div>
         <div id='overlay-form'>
             <div class="trainSelectContainer"  style="width: 25%">
                 From:<br>
@@ -62,6 +65,7 @@
     
 
     <script src="scripts/train.js"></script>
+    <script src="scripts/trainObj.js"></script>
 
     <script type="text/javascript">
         // get stations for input
@@ -92,7 +96,28 @@
                 e.stopPropagation();
             });
         });
+
+
+        $(document).ready(function(){
+            trainIDs = [];
+            try{
+                trainIDs = localStorage.getItem('trainIDs') || [];
+            } catch (e){
+                console.log("No trains in storage");
+            }
+            fillSidePanel();
+        });
         
+        function fillSidePanel(){
+            $('#overlay-side').append(
+                $(document.createElement("ul")).append(
+                    $.each(trainIDs,function(id){
+                        return $(document.createElement("li")).html('id');
+                    })
+                )
+            );
+        }
+
         function selectStation(val) {
             // fill in station when selected
             document.getElementById($(this).attr('name')+"Station").value = val;
