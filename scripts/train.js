@@ -81,6 +81,11 @@ function printSelectedTrains(query){
                     )
                 ]
             ).addClass("trainEntry")
+            .click(function(){
+                    trainIDs.push(connections[i].departure.vehicle);
+                    fillSidePanel();
+                }
+            )
         );
     }
 }
